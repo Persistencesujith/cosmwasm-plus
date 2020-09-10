@@ -115,7 +115,8 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
     amount: Uint128,
     incoming: HumanAddr,
 ) -> StdResult<HandleResponse> {
-    let _persistence_Address = incoming;
+    
+    if deps.api.canonical_address(&incoming)?.to_string() == "myexpectedvalue"{
     let rcpt_raw = deps.api.canonical_address(&recipient)?;
     let sender_raw = deps.api.canonical_address(&env.message.sender)?;
 
@@ -138,6 +139,12 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
         data: None,
     };
     Ok(res)
+    }
+     else {
+          return Err(StdError::unauthorized());
+    }
+    
+   
 }
 
 pub fn handle_burn<S: Storage, A: Api, Q: Querier>(
