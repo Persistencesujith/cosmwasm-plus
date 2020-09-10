@@ -75,7 +75,7 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
     msg: HandleMsg,
 ) -> StdResult<HandleResponse> {
     match msg {
-        HandleMsg::Transfer { recipient, amount } => handle_transfer(deps, env, recipient, amount),
+        HandleMsg::Transfer { recipient, amount, incoming } => handle_transfer(deps, env, recipient, amount,incoming),
         HandleMsg::Burn { amount } => handle_burn(deps, env, amount),
         HandleMsg::Send {
             contract,
@@ -113,7 +113,9 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
     env: Env,
     recipient: HumanAddr,
     amount: Uint128,
+    incoming: HumanAddr,
 ) -> StdResult<HandleResponse> {
+    let _persistence_Address = incoming;
     let rcpt_raw = deps.api.canonical_address(&recipient)?;
     let sender_raw = deps.api.canonical_address(&env.message.sender)?;
 
