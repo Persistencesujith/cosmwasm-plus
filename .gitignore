@@ -4,8 +4,8 @@
 # Text file backups
 **/*.rs.bk
 
-# Build results
-target/
+# # Build results
+# target/
 
 # IDEs
 .vscode/
