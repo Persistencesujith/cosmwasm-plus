@@ -115,7 +115,7 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
     amount: Uint128,
     incoming: HumanAddr,
 ) -> StdResult<HandleResponse> {
-    let comdexaddress = deps.api.canonical_address(&incoming)?.to_string();
+    let comdexaddress = &incoming.to_string();
     if  comdexaddress.contains("cosmos"){
     let rcpt_raw = deps.api.canonical_address(&recipient)?;
     let sender_raw = deps.api.canonical_address(&env.message.sender)?;
