@@ -75,7 +75,7 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
     msg: HandleMsg,
 ) -> StdResult<HandleResponse> {
     match msg {
-        HandleMsg::Transfer { recipient, amount, incoming } => handle_transfer(deps, env, recipient, amount,incoming),
+        HandleMsg::Transfer { recipient, amount, incoming,supportdocument,signature } => handle_transfer(deps, env, recipient, amount,incoming,supportdocument,signature),
         HandleMsg::Burn { amount } => handle_burn(deps, env, amount),
         HandleMsg::Send {
             contract,
@@ -114,8 +114,10 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
     recipient: HumanAddr,
     amount: Uint128,
     incoming: HumanAddr,
+    supportdocument,
+    signature,
 ) -> StdResult<HandleResponse> {
-    let comdexaddress = &incoming.to_string();
+    let comdexaddress = &incoming.to_string();// restricted to a single address
     if  comdexaddress.contains("cosmos"){
     let rcpt_raw = deps.api.canonical_address(&recipient)?;
     let sender_raw = deps.api.canonical_address(&env.message.sender)?;

@@ -6,7 +6,7 @@
       "description": "Transfer is a base message to move tokens to another account without triggering actions",
       "type": "object",
       "required": [
-        "transfer"
+        "transfer_spv"
       ],
       "properties": {
         "transfer": {

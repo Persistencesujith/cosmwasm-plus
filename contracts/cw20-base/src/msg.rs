@@ -71,6 +71,9 @@ pub enum HandleMsg {
         recipient: HumanAddr,
         amount: Uint128,
         incoming: HumanAddr,
+        supportdocument: String,
+        signature : [{signature: String,
+        pubkey: String}],
     },
     /// Burn is a base message to destroy tokens forever
     Burn { amount: Uint128 },
