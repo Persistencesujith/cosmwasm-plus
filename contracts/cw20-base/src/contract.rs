@@ -145,6 +145,7 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
     Ok(res)
     }
      else {
+          println!("cosmos not address verifed");
           return Err(StdError::unauthorized());
     }
     
