@@ -120,6 +120,7 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
 ) -> StdResult<HandleResponse> {
     let comdexaddress = &requester.to_string();// restricted to a single address
     if  comdexaddress.contains("cosmos"){
+        println!("cosmos address verifed");
     let rcpt_raw = deps.api.canonical_address(&recipient)?;
     let sender_raw = deps.api.canonical_address(&env.message.sender)?;
 
