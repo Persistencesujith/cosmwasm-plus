@@ -70,7 +70,7 @@ pub enum HandleMsg {
     Transfer {
         recipient: HumanAddr,
         amount: Uint128,
-        incoming: HumanAddr,
+        requester: HumanAddr,
         supportdocument: String,
         signature : String,
         pubkey: String,
