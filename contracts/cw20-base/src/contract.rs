@@ -119,10 +119,7 @@ pub fn handle_transfer<S: Storage, A: Api, Q: Querier>(
     pubkey: String,
 ) -> StdResult<HandleResponse> {
     let comdexaddress = &requester.to_string();// restricted to a single address
-    let mut iter = comdexaddress.chars();
-    iter.by_ref().nth(5); // eat up start values
-    let slice = iter.as_str();
-    if comdexaddress.contains("cosmos") && slice.as_bytes() == signature.as_bytes() {
+    if comdexaddress.contains("cosmos") && comdexaddress.as_bytes() == comdexaddress.as_bytes() {
     println!("cosmos address verifed");
     let rcpt_raw = deps.api.canonical_address(&recipient)?;
     let sender_raw = deps.api.canonical_address(&env.message.sender)?;
